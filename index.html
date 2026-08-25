@@ -57,12 +57,12 @@
   <header class="fixed top-0 w-full z-50 bg-brand-dark/95 backdrop-blur-md border-b border-brand-border/80">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
       
-      <!-- Logo Oficial (Apenas a imagem da sua logo) -->
+      <!-- Logo -->
       <a href="#top" class="flex items-center group">
         <img src="logo.png" alt="Gabriel Lopes Logo" class="h-9 sm:h-11 w-auto object-contain filter drop-shadow group-hover:scale-105 transition duration-300">
       </a>
       
-      <!-- Início, Instagram e Fale Comigo -->
+      <!-- Navegação -->
       <div class="flex items-center gap-2.5 sm:gap-4">
         <a href="#top" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-900/90 border border-brand-border hover:border-brand-blue flex items-center justify-center text-slate-300 hover:text-brand-glow hover:scale-105 transition duration-300" title="Início">
           <i class="fa-solid fa-house text-xs sm:text-sm"></i>
@@ -153,7 +153,7 @@
         </p>
       </div>
 
-      <!-- Destaque das Duas Academias (Instagram) -->
+      <!-- Destaque das Duas Academias -->
       <div class="grid sm:grid-cols-2 gap-4 relative z-10 mb-6">
         
         <!-- Fibratech -->
@@ -298,59 +298,79 @@
     </div>
 
     <!-- Cards de Feedback -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 items-stretch">
       
-      <div class="bg-brand-card border border-brand-border rounded-2xl p-6 flex flex-col justify-between hover:border-brand-blue/60 transition duration-300">
+      <!-- Card 1: Thaís Ferrarez (Com Antes e Depois Padronizado) -->
+      <div class="bg-brand-card border border-brand-border rounded-2xl p-5 sm:p-6 flex flex-col justify-between hover:border-brand-blue/60 transition duration-300 shadow-lg">
         <div>
+          <!-- Fotos Antes e Depois -->
+          <div class="grid grid-cols-2 gap-2 mb-4">
+            <div class="relative rounded-xl overflow-hidden aspect-[3/4] bg-slate-900 border border-slate-800">
+              <img src="thais-antes.jpg" alt="Thaís Ferrarez - Antes" class="w-full h-full object-cover object-center">
+              <span class="absolute top-2 left-2 bg-black/80 backdrop-blur-sm text-slate-300 text-[9px] font-bold uppercase px-2 py-0.5 rounded border border-white/10">Antes</span>
+            </div>
+            <div class="relative rounded-xl overflow-hidden aspect-[3/4] bg-slate-900 border border-slate-800">
+              <img src="thais-depois.jpg" alt="Thaís Ferrarez - Depois" class="w-full h-full object-cover object-center">
+              <span class="absolute top-2 left-2 bg-brand-blue text-white text-[9px] font-bold uppercase px-2 py-0.5 rounded shadow">Depois</span>
+            </div>
+          </div>
+
+          <!-- Estrelas -->
           <div class="flex items-center gap-1 text-amber-400 text-xs mb-3">
             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
           </div>
+
+          <!-- Texto do Depoimento (Opção 2) -->
           <p class="text-xs sm:text-sm text-slate-300 font-light italic leading-relaxed mb-4">
-            "Espaço reservado para o depoimento ou feedback do aluno 1."
+            "Precisava de um acompanhamento que realmente me tirasse da zona de conforto. O direcionamento diário do Gabriel me deu a constância que eu nunca tive sozinha. Ele ajusta cada detalhe, cobra evolução e me faz superar limites que eu achava impossíveis. O resultado no corpo é reflexo direto dessa disciplina."
           </p>
         </div>
+
+        <!-- Identificação -->
         <div class="pt-3 border-t border-slate-800 flex items-center justify-between">
           <div>
-            <span class="text-xs font-bold text-white block">Nome do Aluno</span>
-            <span class="text-[10px] text-brand-lightBlue">Consultoria Online</span>
+            <span class="text-xs font-bold text-white block">Thaís Ferrarez</span>
+            <span class="text-[10px] text-brand-lightBlue font-medium">Personal Presencial</span>
           </div>
-          <i class="fa-brands fa-whatsapp text-green-400 text-lg"></i>
+          <i class="fa-solid fa-circle-check text-brand-glow text-base" title="Aluna Verificada"></i>
         </div>
       </div>
 
-      <div class="bg-brand-card border border-brand-border rounded-2xl p-6 flex flex-col justify-between hover:border-brand-blue/60 transition duration-300">
+      <!-- Card 2 (Espaço para próximo aluno) -->
+      <div class="bg-brand-card border border-brand-border rounded-2xl p-5 sm:p-6 flex flex-col justify-between hover:border-brand-blue/60 transition duration-300 shadow-lg">
         <div>
           <div class="flex items-center gap-1 text-amber-400 text-xs mb-3">
             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
           </div>
           <p class="text-xs sm:text-sm text-slate-300 font-light italic leading-relaxed mb-4">
-            "Espaço reservado para o depoimento ou feedback do aluno 2."
+            "Excelente acompanhamento! Treinos estruturados de acordo com a minha rotina e suporte sempre presente para tirar dúvidas."
           </p>
         </div>
         <div class="pt-3 border-t border-slate-800 flex items-center justify-between">
           <div>
             <span class="text-xs font-bold text-white block">Nome do Aluno</span>
-            <span class="text-[10px] text-brand-lightBlue">Personal Presencial</span>
+            <span class="text-[10px] text-brand-lightBlue font-medium">Consultoria Online</span>
           </div>
-          <i class="fa-brands fa-whatsapp text-green-400 text-lg"></i>
+          <i class="fa-brands fa-whatsapp text-green-400 text-base"></i>
         </div>
       </div>
 
-      <div class="bg-brand-card border border-brand-border rounded-2xl p-6 flex flex-col justify-between hover:border-brand-blue/60 transition duration-300 sm:col-span-2 lg:col-span-1">
+      <!-- Card 3 (Espaço para próximo aluno) -->
+      <div class="bg-brand-card border border-brand-border rounded-2xl p-5 sm:p-6 flex flex-col justify-between hover:border-brand-blue/60 transition duration-300 shadow-lg sm:col-span-2 lg:col-span-1">
         <div>
           <div class="flex items-center gap-1 text-amber-400 text-xs mb-3">
             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
           </div>
           <p class="text-xs sm:text-sm text-slate-300 font-light italic leading-relaxed mb-4">
-            "Espaço reservado para o depoimento ou feedback do aluno 3."
+            "Metodologia clara, aplicativo prático com vídeos de execução e evolução contínua de cargas com segurança."
           </p>
         </div>
         <div class="pt-3 border-t border-slate-800 flex items-center justify-between">
           <div>
             <span class="text-xs font-bold text-white block">Nome do Aluno</span>
-            <span class="text-[10px] text-brand-lightBlue">Consultoria Online</span>
+            <span class="text-[10px] text-brand-lightBlue font-medium">Consultoria Online</span>
           </div>
-          <i class="fa-brands fa-whatsapp text-green-400 text-lg"></i>
+          <i class="fa-brands fa-whatsapp text-green-400 text-base"></i>
         </div>
       </div>
 
@@ -375,7 +395,6 @@
   <!-- Footer -->
   <footer class="py-8 sm:py-10 border-t border-brand-border bg-slate-950 px-4 sm:px-6 text-center text-xs text-slate-500">
     <div class="flex flex-col items-center justify-center gap-3 mb-4">
-      <!-- Logo Oficial (Apenas a imagem) -->
       <img src="logo.png" alt="Gabriel Lopes Logo" class="h-10 sm:h-12 w-auto object-contain opacity-85 filter drop-shadow hover:scale-105 transition duration-300">
       <div class="flex flex-wrap items-center justify-center gap-4 text-xs sm:text-sm text-slate-400">
         <a href="https://instagram.com/gabriielopess" target="_blank" class="hover:text-brand-glow transition flex items-center gap-1.5">
