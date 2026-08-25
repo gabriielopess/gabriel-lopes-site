@@ -377,7 +377,7 @@
           </div>
 
           <p class="text-xs sm:text-sm text-slate-300 font-light italic leading-relaxed mb-4 line-clamp-4">
-            "A consultoria online superou muito as minhas expectativas. Mesmo de longe, os treinos são 100% detalhados no aplicativo, com vídeos práticos de cada movimento e orientações claras de execução..."
+            "A consultoria online superou muito as minhas expectativas. Mesmo de longe, os treinos são 100% detalhados no aplicativo, com fotos e vídeos de cada movimento e orientações para a execução..."
           </p>
         </div>
 
@@ -405,7 +405,7 @@
           </div>
 
           <p class="text-xs sm:text-sm text-slate-300 font-light italic leading-relaxed mb-4 line-clamp-4">
-            "Por conta da correria do trabalho e viagens, precisava de flexibilidade total sem abrir mão de um planejamento de alto nível. O Gabriel monta a periodização de acordo com a estrutura..."
+            "Por conta da correria dos estudos, precisava de flexibilidade total sem abrir mão de um planejamento de bem feito. O Gabriel monta o treino de acordo com a estrutura da academia..."
           </p>
         </div>
 
@@ -460,12 +460,12 @@
     <i class="fa-brands fa-whatsapp"></i>
   </a>
 
-  <!-- ================= POP-UP MODAL CONTAINER ================= -->
-  <div id="review-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4 transition-all duration-300">
-    <div class="bg-brand-card border border-brand-border rounded-3xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl overflow-y-auto max-h-[90vh] glow-effect">
+  <!-- ================= POP-UP MODAL CONTAINER (Com espaço superior dedicado para o X) ================= -->
+  <div id="review-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4 sm:p-6 transition-all duration-300">
+    <div class="bg-brand-card border border-brand-border rounded-3xl max-w-xl w-full p-6 sm:p-8 pt-14 sm:pt-16 relative shadow-2xl overflow-y-auto max-h-[90vh] glow-effect">
       
-      <!-- Botão Fechar -->
-      <button onclick="closeReviewModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-900 border border-slate-700 text-slate-300 hover:text-white hover:border-brand-blue flex items-center justify-center transition duration-200">
+      <!-- Botão Fechar com z-index alto e margem livre -->
+      <button onclick="closeReviewModal()" class="absolute top-4 right-4 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-900 border border-slate-700 text-slate-300 hover:text-white hover:border-brand-blue flex items-center justify-center transition duration-200 z-20 shadow-md">
         <i class="fa-solid fa-xmark text-lg"></i>
       </button>
       
