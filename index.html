@@ -9,7 +9,6 @@
   <!-- Tailwind CSS & Font Awesome -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -109,16 +108,12 @@
     </div>
   </section>
 
-  <!-- Seção Quem Sou Eu -->
+  <!-- Seção Quem Sou Eu (Sem o badge 'Treinador') -->
   <section id="sobre" class="py-8 sm:py-12 px-4 sm:px-6 max-w-4xl mx-auto">
     <div class="bg-brand-card border border-brand-border rounded-3xl p-6 sm:p-10 relative overflow-hidden shadow-2xl">
       <div class="absolute top-0 right-0 w-64 h-64 bg-brand-blue/10 rounded-full filter blur-3xl pointer-events-none"></div>
 
       <div class="relative z-10 text-center sm:text-left">
-        <div class="inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-brand-glow bg-brand-blue/10 border border-brand-blue/30 px-3 py-1 rounded-full mb-3">
-          <i class="fa-solid fa-user"></i> Treinador
-        </div>
-        
         <h2 class="text-2xl sm:text-3xl font-black font-heading uppercase tracking-tight text-white mb-6">Quem sou eu</h2>
         
         <div class="space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
@@ -178,10 +173,10 @@
 
       </div>
 
-      <!-- Bloco de Informações -->
+      <!-- Bloco de Informações (Sem repetição do texto '2 a 5x por semana') -->
       <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 relative z-10 mb-6">
         <p class="text-xs sm:text-sm text-slate-300 text-center sm:text-left leading-relaxed mb-5 font-light">
-          Treinos presenciais com atendimento de <strong class="text-white font-bold">2 a 5x por semana</strong> e <strong class="text-white font-bold">horários flexíveis</strong>. <strong class="text-white font-bold">Estrutura completa</strong> com equipamentos modernos para treinos intensos, <strong class="text-white font-bold">correção postural</strong> e máxima <strong class="text-white font-bold">progressão de cargas</strong> com segurança.
+          <strong class="text-white font-bold">Estrutura completa</strong> com equipamentos modernos para treinos intensos, <strong class="text-white font-bold">correção postural</strong> e máxima <strong class="text-white font-bold">progressão de cargas</strong> com segurança.
         </p>
 
         <ul class="grid sm:grid-cols-2 gap-3 text-xs sm:text-sm text-slate-300 border-t border-slate-800 pt-4">
@@ -300,7 +295,7 @@
     <!-- Cards de Feedback -->
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 items-stretch">
       
-      <!-- Card 1: Thaís Ferrarez (Com Antes e Depois Padronizado) -->
+      <!-- Card 1: Thaís Ferrarez -->
       <div class="bg-brand-card border border-brand-border rounded-2xl p-5 sm:p-6 flex flex-col justify-between hover:border-brand-blue/60 transition duration-300 shadow-lg">
         <div>
           <!-- Fotos Antes e Depois -->
@@ -320,7 +315,7 @@
             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
           </div>
 
-          <!-- Texto do Depoimento (Opção 2) -->
+          <!-- Depoimento -->
           <p class="text-xs sm:text-sm text-slate-300 font-light italic leading-relaxed mb-4">
             "Precisava de um acompanhamento que realmente me tirasse da zona de conforto. O direcionamento diário do Gabriel me deu a constância que eu nunca tive sozinha. Ele ajusta cada detalhe, cobra evolução e me faz superar limites que eu achava impossíveis. O resultado no corpo é reflexo direto dessa disciplina."
           </p>
@@ -336,22 +331,39 @@
         </div>
       </div>
 
-      <!-- Card 2 (Espaço para próximo aluno) -->
+      <!-- Card 2: Luciana Lopes -->
       <div class="bg-brand-card border border-brand-border rounded-2xl p-5 sm:p-6 flex flex-col justify-between hover:border-brand-blue/60 transition duration-300 shadow-lg">
         <div>
+          <!-- Fotos Antes e Depois -->
+          <div class="grid grid-cols-2 gap-2 mb-4">
+            <div class="relative rounded-xl overflow-hidden aspect-[3/4] bg-slate-900 border border-slate-800">
+              <img src="luciana-antes.jpg" alt="Luciana Lopes - Antes" class="w-full h-full object-cover object-center">
+              <span class="absolute top-2 left-2 bg-black/80 backdrop-blur-sm text-slate-300 text-[9px] font-bold uppercase px-2 py-0.5 rounded border border-white/10">Antes</span>
+            </div>
+            <div class="relative rounded-xl overflow-hidden aspect-[3/4] bg-slate-900 border border-slate-800">
+              <img src="luciana-depois.jpg" alt="Luciana Lopes - Depois" class="w-full h-full object-cover object-center">
+              <span class="absolute top-2 left-2 bg-brand-blue text-white text-[9px] font-bold uppercase px-2 py-0.5 rounded shadow">Depois</span>
+            </div>
+          </div>
+
+          <!-- Estrelas -->
           <div class="flex items-center gap-1 text-amber-400 text-xs mb-3">
             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
           </div>
+
+          <!-- Depoimento -->
           <p class="text-xs sm:text-sm text-slate-300 font-light italic leading-relaxed mb-4">
-            "Excelente acompanhamento! Treinos estruturados de acordo com a minha rotina e suporte sempre presente para tirar dúvidas."
+            "Ter um acompanhamento que ajusta a biomecânica e cobra constância em cada fase fez toda a diferença. O Gabriel me fez entender como treinar de verdade e superar meus limites diários. A evolução física foi consequência natural de um plano sério e bem executado."
           </p>
         </div>
+
+        <!-- Identificação -->
         <div class="pt-3 border-t border-slate-800 flex items-center justify-between">
           <div>
-            <span class="text-xs font-bold text-white block">Nome do Aluno</span>
-            <span class="text-[10px] text-brand-lightBlue font-medium">Consultoria Online</span>
+            <span class="text-xs font-bold text-white block">Luciana Lopes</span>
+            <span class="text-[10px] text-brand-lightBlue font-medium">Personal Presencial</span>
           </div>
-          <i class="fa-brands fa-whatsapp text-green-400 text-base"></i>
+          <i class="fa-solid fa-circle-check text-brand-glow text-base" title="Aluna Verificada"></i>
         </div>
       </div>
 
@@ -362,12 +374,12 @@
             <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
           </div>
           <p class="text-xs sm:text-sm text-slate-300 font-light italic leading-relaxed mb-4">
-            "Metodologia clara, aplicativo prático com vídeos de execução e evolução contínua de cargas com segurança."
+            "Metodologia clara, aplicativo prático com vídeos de execução e evolução contínua de cargas com segurança e respaldo profissional."
           </p>
         </div>
         <div class="pt-3 border-t border-slate-800 flex items-center justify-between">
           <div>
-            <span class="text-xs font-bold text-white block">Nome do Aluno</span>
+            <span class="text-xs font-bold text-white block">Aluno</span>
             <span class="text-[10px] text-brand-lightBlue font-medium">Consultoria Online</span>
           </div>
           <i class="fa-brands fa-whatsapp text-green-400 text-base"></i>
