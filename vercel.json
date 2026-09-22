@@ -1,0 +1,10 @@
+{
+  "rewrites": [
+    {"source": "/presente", "destination": "/presente/index.html"},
+    {"source": "/respostas", "destination": "/respostas/index.html"}
+  ],
+  "headers": [
+    {"source": "/presente(.*)", "headers": [{"key": "X-Robots-Tag", "value": "noindex, nofollow"}]},
+    {"source": "/respostas(.*)", "headers": [{"key": "X-Robots-Tag", "value": "noindex, nofollow"}, {"key": "Cache-Control", "value": "no-store"}]}
+  ]
+}
