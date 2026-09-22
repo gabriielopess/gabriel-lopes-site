@@ -17,21 +17,23 @@
     for (const row of filtered) {
       const article = document.createElement('article'); article.className = 'response';
       const h2 = document.createElement('h2'); h2.textContent = row.name; article.append(h2);
-      for (const value of [row.model, row.size]) { const span = document.createElement('span'); span.className = 'tag'; span.textContent = value; article.append(span); }
-      const time = document.createElement('time'); time.dateTime = row.createdAt; time.textContent = new Date(row.createdAt).toLocaleString('pt-BR'); article.append(time);
+      for (const value of [row.model === 'Feminino' ? 'Fem.' : 'Masc.', row.size]) { const span = document.createElement('span'); span.className = 'tag'; span.textContent = value; article.append(span); }
+      article.title = `Recebida em ${new Date(row.createdAt).toLocaleString('pt-BR')}`;
       const remove = document.createElement('button');
-      remove.type = 'button'; remove.className = 'delete-response'; remove.textContent = 'Apagar';
+      remove.type = 'button'; remove.className = 'delete-response'; remove.title = 'Apagar resposta';
+      const icon = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M9 6V4h6v2M5 6l1 14h12l1-14M10 10v6M14 10v6"/></svg>';
+      remove.innerHTML = icon;
       remove.setAttribute('aria-label', `Apagar resposta de ${row.name}`);
       remove.addEventListener('click', async () => {
         if (!window.confirm(`Apagar a resposta de ${row.name}? Esta ação não pode ser desfeita.`)) return;
-        remove.disabled = true; remove.textContent = 'Apagando…'; $('#error').hidden = true;
+        remove.disabled = true; remove.textContent = '…'; $('#error').hidden = true;
         try {
           await api('delete', { id: row.id });
           rows = rows.filter(item => item.id !== row.id);
           render();
         } catch (error) {
           if (error.status === 401) locked();
-          fail(error); remove.disabled = false; remove.textContent = 'Apagar';
+          fail(error); remove.disabled = false; remove.innerHTML = icon;
         }
       });
       article.append(remove);
