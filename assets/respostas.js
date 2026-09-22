@@ -19,6 +19,22 @@
       const h2 = document.createElement('h2'); h2.textContent = row.name; article.append(h2);
       for (const value of [row.model, row.size]) { const span = document.createElement('span'); span.className = 'tag'; span.textContent = value; article.append(span); }
       const time = document.createElement('time'); time.dateTime = row.createdAt; time.textContent = new Date(row.createdAt).toLocaleString('pt-BR'); article.append(time);
+      const remove = document.createElement('button');
+      remove.type = 'button'; remove.className = 'delete-response'; remove.textContent = 'Apagar';
+      remove.setAttribute('aria-label', `Apagar resposta de ${row.name}`);
+      remove.addEventListener('click', async () => {
+        if (!window.confirm(`Apagar a resposta de ${row.name}? Esta ação não pode ser desfeita.`)) return;
+        remove.disabled = true; remove.textContent = 'Apagando…'; $('#error').hidden = true;
+        try {
+          await api('delete', { id: row.id });
+          rows = rows.filter(item => item.id !== row.id);
+          render();
+        } catch (error) {
+          if (error.status === 401) locked();
+          fail(error); remove.disabled = false; remove.textContent = 'Apagar';
+        }
+      });
+      article.append(remove);
       $('#list').append(article);
     }
   }

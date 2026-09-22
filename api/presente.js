@@ -26,7 +26,7 @@ module.exports = async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store'); res.setHeader('X-Robots-Tag', 'noindex, nofollow'); res.setHeader('X-Content-Type-Options', 'nosniff');
   const send = (status, body) => res.status(status).json(body);
   const action = req.query?.action || 'submit';
-  if (!['submit', 'responses', 'login', 'logout'].includes(action)) return send(404, { error: 'Não encontrado.' });
+  if (!['submit', 'responses', 'login', 'logout', 'delete'].includes(action)) return send(404, { error: 'Não encontrado.' });
   const method = action === 'responses' ? 'GET' : 'POST';
   if (req.method !== method) { res.setHeader('Allow', method); return send(405, { error: 'Método não permitido.' }); }
   if (!databaseUrl() || !databaseToken() || !process.env.PRESENTE_ADMIN_USER || (process.env.PRESENTE_ADMIN_PASSWORD || '').length < 16) return send(503, { error: 'O formulário ainda não está disponível. Tente novamente mais tarde.' });
@@ -46,6 +46,12 @@ module.exports = async function handler(req, res) {
       if (typeof body.username !== 'string' || typeof body.password !== 'string' || !equal(body.username, process.env.PRESENTE_ADMIN_USER) || !equal(body.password, process.env.PRESENTE_ADMIN_PASSWORD)) return send(401, { error: 'Usuário ou senha incorretos.' });
       const expires = String(Date.now() + 28800000);
       res.setHeader('Set-Cookie', `${COOKIE}=${expires}.${sign(expires)}; Path=/api/presente; HttpOnly; Secure; SameSite=Strict; Max-Age=28800`);
+      return send(200, { ok: true });
+    }
+    if (action === 'delete') {
+      if (!authorized(req)) return send(401, { error: 'Entre para apagar respostas.' });
+      if (typeof body.id !== 'string' || !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(body.id)) return send(400, { error: 'Resposta inválida.' });
+      await redis(['HDEL', KEY, body.id]);
       return send(200, { ok: true });
     }
     if (action === 'responses') {
