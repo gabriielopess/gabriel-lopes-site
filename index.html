@@ -39,6 +39,20 @@
   </script>
 
   <style>
+    /* Oculta todas as barras de rolagem sem desativar o scroll */
+    html, body, * {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar,
+    *::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+
     .glow-effect {
       box-shadow: 0 0 30px -5px #2e6bea80;
     }
