@@ -49,6 +49,265 @@
       background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
       background-size: 28px 28px;
     }
+
+    /* ================= MOTION DESIGN =================
+       Apenas efeitos visuais: não altera conteúdo, links ou layout. */
+    :root {
+      --motion-ease: cubic-bezier(.22, 1, .36, 1);
+      --motion-blue: rgba(46, 107, 234, .42);
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    /* Barra de progresso discreta no topo */
+    #scroll-progress {
+      position: fixed;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 2px;
+      z-index: 80;
+      pointer-events: none;
+      transform: scaleX(0);
+      transform-origin: left center;
+      background: linear-gradient(90deg, #5a8eff, #2e6bea, #8bb1ff);
+      box-shadow: 0 0 14px rgba(46, 107, 234, .65);
+      will-change: transform;
+    }
+
+    /* Navbar ganha profundidade conforme a página desce */
+    header {
+      transition: background-color .35s ease, box-shadow .35s ease, border-color .35s ease;
+    }
+    header.nav-scrolled {
+      background-color: rgba(7, 9, 14, .985);
+      border-color: rgba(46, 107, 234, .18);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, .28);
+    }
+
+    /* Hero com luz ambiente em movimento */
+    .hero-bg::before,
+    .hero-bg::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(12px);
+      will-change: transform, opacity;
+    }
+    .hero-bg::before {
+      width: min(62vw, 680px);
+      aspect-ratio: 1;
+      top: -34%;
+      left: -12%;
+      background: radial-gradient(circle, rgba(46, 107, 234, .18) 0%, rgba(46, 107, 234, 0) 68%);
+      animation: ambientFloatA 11s ease-in-out infinite alternate;
+    }
+    .hero-bg::after {
+      width: min(48vw, 520px);
+      aspect-ratio: 1;
+      right: -12%;
+      bottom: -34%;
+      background: radial-gradient(circle, rgba(90, 142, 255, .14) 0%, rgba(90, 142, 255, 0) 70%);
+      animation: ambientFloatB 13s ease-in-out infinite alternate;
+    }
+
+    @keyframes ambientFloatA {
+      from { transform: translate3d(-3%, -2%, 0) scale(.96); opacity: .55; }
+      to   { transform: translate3d(12%, 10%, 0) scale(1.08); opacity: 1; }
+    }
+    @keyframes ambientFloatB {
+      from { transform: translate3d(3%, 5%, 0) scale(.94); opacity: .5; }
+      to   { transform: translate3d(-12%, -8%, 0) scale(1.1); opacity: .95; }
+    }
+
+    /* Entrada do primeiro bloco sem esperar o scroll */
+    .hero-bg h1,
+    .hero-bg p,
+    .hero-bg .space-y-3 {
+      opacity: 0;
+      animation: heroEnter .9s var(--motion-ease) forwards;
+    }
+    .hero-bg h1 { animation-delay: .08s; }
+    .hero-bg p { animation-delay: .18s; }
+    .hero-bg .space-y-3 { animation-delay: .3s; }
+
+    @keyframes heroEnter {
+      from { opacity: 0; transform: translate3d(0, 24px, 0) scale(.985); filter: blur(5px); }
+      to   { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: blur(0); }
+    }
+
+    .hero-bg h1 span {
+      background-size: 220% 220%;
+      animation: gradientTravel 6s ease-in-out infinite alternate;
+    }
+    @keyframes gradientTravel {
+      from { background-position: 0% 50%; }
+      to { background-position: 100% 50%; }
+    }
+
+    /* Revelação progressiva ao rolar */
+    .motion-reveal {
+      opacity: 0;
+      transform: translate3d(0, 28px, 0) scale(.986);
+      filter: blur(4px);
+      transition:
+        opacity .78s var(--motion-ease) var(--motion-delay, 0ms),
+        transform .78s var(--motion-ease) var(--motion-delay, 0ms),
+        filter .65s ease var(--motion-delay, 0ms);
+      will-change: transform, opacity;
+    }
+    .motion-reveal.is-visible {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+      filter: blur(0);
+    }
+
+    /* Cards: pequena sensação de profundidade, sem exagero */
+    .motion-lift {
+      transition:
+        transform .45s var(--motion-ease),
+        box-shadow .45s ease,
+        border-color .35s ease;
+      will-change: transform;
+    }
+    @media (hover: hover) {
+      .motion-lift:hover {
+        transform: translate3d(0, -6px, 0) scale(1.01);
+        box-shadow: 0 22px 55px rgba(0, 0, 0, .26), 0 0 34px rgba(46, 107, 234, .09);
+      }
+    }
+
+    /* Plano em destaque respira levemente */
+    .motion-featured {
+      animation: featuredGlow 4.2s ease-in-out infinite;
+    }
+    @keyframes featuredGlow {
+      0%, 100% { box-shadow: 0 0 30px -5px rgba(46, 107, 234, .5); }
+      50% { box-shadow: 0 0 48px -6px rgba(46, 107, 234, .72); }
+    }
+
+    /* Microinterações de botões: shine + magnetismo + pressão */
+    .motion-button {
+      --mag-x: 0px;
+      --mag-y: 0px;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      transform: translate3d(var(--mag-x), var(--mag-y), 0);
+      transition:
+        transform .32s var(--motion-ease),
+        box-shadow .32s ease,
+        border-color .32s ease,
+        background-color .32s ease,
+        color .32s ease;
+      will-change: transform;
+    }
+    .motion-button::before {
+      content: "";
+      position: absolute;
+      inset: -120% auto -120% -38%;
+      width: 24%;
+      pointer-events: none;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.28), transparent);
+      transform: rotate(18deg) translateX(-520%);
+      transition: transform .72s var(--motion-ease);
+    }
+    @media (hover: hover) {
+      .motion-button:hover {
+        transform: translate3d(var(--mag-x), var(--mag-y), 0) scale(1.035);
+      }
+      .motion-button:hover::before {
+        transform: rotate(18deg) translateX(780%);
+      }
+    }
+    .motion-button:active {
+      transform: translate3d(var(--mag-x), var(--mag-y), 0) scale(.975);
+      transition-duration: .09s;
+    }
+
+    .motion-ripple {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      pointer-events: none;
+      background: rgba(255, 255, 255, .28);
+      transform: translate(-50%, -50%) scale(0);
+      animation: ripple .62s ease-out forwards;
+      z-index: 3;
+    }
+    @keyframes ripple {
+      to { transform: translate(-50%, -50%) scale(24); opacity: 0; }
+    }
+
+    /* Ícones das listas entram com um pequeno pop */
+    .motion-list-item.is-visible i {
+      animation: iconPop .55s var(--motion-ease) both;
+      animation-delay: calc(var(--motion-delay, 0ms) + 110ms);
+    }
+    @keyframes iconPop {
+      from { transform: scale(.55) rotate(-8deg); opacity: .25; }
+      to { transform: scale(1) rotate(0); opacity: 1; }
+    }
+
+    /* WhatsApp flutuante com pulso suave */
+    .wa-float-motion {
+      animation: waBreath 3.1s ease-in-out infinite;
+      will-change: transform, box-shadow;
+    }
+    .wa-float-motion::after {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border: 1px solid rgba(37, 211, 102, .5);
+      border-radius: inherit;
+      pointer-events: none;
+      animation: waRing 2.8s ease-out infinite;
+    }
+    @keyframes waBreath {
+      0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(0, -2px, 0) scale(1.035); }
+    }
+    @keyframes waRing {
+      0% { opacity: .7; transform: scale(.92); }
+      75%, 100% { opacity: 0; transform: scale(1.42); }
+    }
+
+    /* Pop-up com entrada mais cinematográfica */
+    #review-modal.flex {
+      animation: modalBackdropIn .26s ease both;
+    }
+    #review-modal.flex > div {
+      animation: modalPanelIn .42s var(--motion-ease) both;
+      transform-origin: center 58%;
+    }
+    @keyframes modalBackdropIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes modalPanelIn {
+      from { opacity: 0; transform: translate3d(0, 18px, 0) scale(.955); filter: blur(5px); }
+      to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); filter: blur(0); }
+    }
+
+    /* Respeita a preferência de acessibilidade do aparelho */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto !important; }
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .motion-reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        filter: none !important;
+      }
+    }
   </style>
 </head>
 <body id="top" class="bg-brand-dark text-slate-100 font-sans antialiased selection:bg-brand-blue selection:text-white">
@@ -622,5 +881,141 @@
     });
   </script>
 
+
+  <!-- Motion Design: scroll, reveals e microinterações -->
+  <script>
+    (() => {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Progresso de leitura
+      const progress = document.createElement('div');
+      progress.id = 'scroll-progress';
+      progress.setAttribute('aria-hidden', 'true');
+      document.body.prepend(progress);
+
+      const header = document.querySelector('header');
+      const hero = document.querySelector('.hero-bg');
+      let ticking = false;
+
+      function updateScrollMotion() {
+        const y = window.scrollY || document.documentElement.scrollTop;
+        const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        progress.style.transform = `scaleX(${Math.min(1, Math.max(0, y / max))})`;
+
+        if (header) header.classList.toggle('nav-scrolled', y > 24);
+
+        // Parallax bem leve no grid do hero
+        if (hero && !reduceMotion) {
+          const shift = Math.min(42, y * .08);
+          hero.style.backgroundPosition = `0 ${shift}px`;
+        }
+
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(updateScrollMotion);
+          ticking = true;
+        }
+      }, { passive: true });
+      window.addEventListener('resize', updateScrollMotion, { passive: true });
+      updateScrollMotion();
+
+      // Revelações por grupo, com stagger curto
+      const revealItems = new Set();
+
+      function addReveal(nodes, step = 70, listItems = false) {
+        [...nodes].forEach((el, index) => {
+          if (!el || el.closest('#modal-templates')) return;
+          el.classList.add('motion-reveal');
+          if (listItems) el.classList.add('motion-list-item');
+          el.style.setProperty('--motion-delay', `${(index % 5) * step}ms`);
+          revealItems.add(el);
+        });
+      }
+
+      addReveal(document.querySelectorAll('#sobre > div, #presencial > div, #consultoria > div > div:first-child, #feedbacks > div:first-child, body > section:not(.hero-bg):not(#sobre):not(#presencial):not(#consultoria):not(#feedbacks) > div'), 0);
+      addReveal(document.querySelectorAll('#presencial .grid > a'), 85);
+      addReveal(document.querySelectorAll('#presencial ul > li'), 45, true);
+      addReveal(document.querySelectorAll('#consultoria .grid > div'), 95);
+      addReveal(document.querySelectorAll('#feedbacks > .grid > div'), 80);
+      addReveal(document.querySelectorAll('footer > div, footer > p'), 80);
+
+      if (reduceMotion || !('IntersectionObserver' in window)) {
+        revealItems.forEach(el => el.classList.add('is-visible'));
+      } else {
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { threshold: .12, rootMargin: '0px 0px -7% 0px' });
+
+        revealItems.forEach(el => observer.observe(el));
+      }
+
+      // Profundidade nos cards principais
+      document.querySelectorAll('#sobre > div, #presencial > div, #presencial .grid > a, #consultoria .grid > div, #feedbacks > .grid > div, body > section:not(.hero-bg):not(#sobre):not(#presencial):not(#consultoria):not(#feedbacks) > div')
+        .forEach(el => el.classList.add('motion-lift'));
+
+      const plans = document.querySelectorAll('#consultoria .grid > div');
+      if (plans[1]) plans[1].classList.add('motion-featured');
+
+      // Botões e CTAs: brilho, ripple e magnetismo sutil
+      const motionButtons = [];
+      document.querySelectorAll('a, button').forEach(el => {
+        if (el.closest('#modal-templates')) return;
+        const classes = typeof el.className === 'string' ? el.className : '';
+        const isFloatWhatsApp = classes.includes('fixed') && classes.includes('bottom-') && el.querySelector('.fa-whatsapp');
+
+        if (isFloatWhatsApp) {
+          el.classList.add('wa-float-motion');
+          return;
+        }
+
+        const looksLikeButton =
+          classes.includes('bg-brand-blue') ||
+          classes.includes('bg-slate-8') ||
+          classes.includes('bg-slate-9') ||
+          classes.includes('rounded-full') && classes.includes('border');
+
+        if (!looksLikeButton) return;
+
+        el.classList.add('motion-button');
+        motionButtons.push(el);
+
+        el.addEventListener('pointerdown', (event) => {
+          if (reduceMotion) return;
+          const rect = el.getBoundingClientRect();
+          const ripple = document.createElement('span');
+          ripple.className = 'motion-ripple';
+          ripple.style.left = `${event.clientX - rect.left}px`;
+          ripple.style.top = `${event.clientY - rect.top}px`;
+          el.appendChild(ripple);
+          window.setTimeout(() => ripple.remove(), 680);
+        });
+      });
+
+      const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      if (finePointer && !reduceMotion) {
+        motionButtons.forEach(button => {
+          button.addEventListener('pointermove', (event) => {
+            const rect = button.getBoundingClientRect();
+            const x = (event.clientX - rect.left) / rect.width - .5;
+            const y = (event.clientY - rect.top) / rect.height - .5;
+            button.style.setProperty('--mag-x', `${(x * 7).toFixed(2)}px`);
+            button.style.setProperty('--mag-y', `${(y * 5).toFixed(2)}px`);
+          });
+          button.addEventListener('pointerleave', () => {
+            button.style.setProperty('--mag-x', '0px');
+            button.style.setProperty('--mag-y', '0px');
+          });
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
